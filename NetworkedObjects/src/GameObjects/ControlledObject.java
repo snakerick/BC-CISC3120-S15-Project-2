@@ -1,7 +1,7 @@
+package GameObjects;
 import java.awt.Graphics;
 import java.awt.event.*;
 
-import javax.swing.JPanel;
 
 
 //This should control the object

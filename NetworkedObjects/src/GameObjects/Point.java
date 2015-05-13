@@ -1,3 +1,4 @@
+package GameObjects;
 import java.util.*;
 
 /**
@@ -12,7 +13,7 @@ import java.util.*;
  * @author Scott Dexter
  *
  */
-class Point implements Cloneable {
+public class Point implements Cloneable {
 	double x, y;
 	protected static int MAX = 75;
 

@@ -1,3 +1,7 @@
+package Client;
+
+import GameObjects.*;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;

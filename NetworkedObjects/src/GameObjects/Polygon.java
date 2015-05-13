@@ -1,3 +1,4 @@
+package GameObjects;
 
 import java.awt.*;
 
@@ -40,7 +41,7 @@ import java.awt.*;
  * @author Scott Dexter
  *
  */
-class Polygon {
+public class Polygon {
 	protected Point[] shape; // An array of points.
 	protected Point offset; // The offset mentioned above
 	protected double rotation; // Zero degrees is "east."
@@ -266,7 +267,7 @@ class Polygon {
 	 * 
 	 * @return The area of this polygon.
 	 */
-	double findArea() {
+	public double findArea() {
 		double sum = 0;
 		for (int i = 0, j = 1; i < shape.length; i++, j = (j + 1)
 				% shape.length) {
