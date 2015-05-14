@@ -4,7 +4,12 @@ import java.awt.event.*;
 
 
 
-//This should control the object
+/**
+ * This was the previously used to controll the ship
+ * 
+ * @author RICKY
+ *
+ */
 public class ControlledObject extends SpaceObjectDecorator {
 	static int a,b;
 	public ControlledObject(SpaceObject decoratedObject) {

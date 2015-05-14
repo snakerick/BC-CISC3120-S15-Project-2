@@ -28,11 +28,8 @@ import java.util.Observable;
 
 
 /**
- * A very simple example of how to use the Game base class.
- * 
- * Here, we provide a constructor for our game, override the JPanel
- * paintComponent() method, and write a simple main() method that creates and
- * starts the game.
+ *	The "View" part of the MVC and it repaints everytime the something happens to the model.
+ *	This class does nothing more then just paint the game
  * 
  * @author sdexter72
  *
@@ -42,39 +39,10 @@ public class SimpleGame extends Game implements Observer {
 	private static CountDownLatch latch;
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 	private SimpleModel model;
-	//private static MessagePanel messageArea;
 	/**
 	 * The lone 'object' in our simple game.
 	 */
 
-	
-	@OnOpen
-	public void onOpen(Session session) {
-		logger.info("Connected ... " + session.getId());
-		try {
-			session.getBasicRemote().sendText("start");
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	@OnClose
-	public void onClose(Session session, CloseReason closeReason) {
-		logger.info(String.format("Session %s close because of %s",
-				session.getId(), closeReason));
-		latch.countDown();
-	}
-	
-
-
-	/**
-	 * This constructor invokes the super constructor, then creates a ship
-	 * object (which doesn't do very much)
-	 * 
-	 * @param name
-	 * @param inWidth
-	 * @param inHeight
-	 */
 
 	public SimpleGame() {
 		//super(name, inWidth, inHeight);
@@ -82,10 +50,6 @@ public class SimpleGame extends Game implements Observer {
 		//addKeyListener(new KeyboardAdapter() );
 		//createObjects(MAX_OBJECTS);
 	}
-
-	/**
-	 * Draw the ship in white.
-	 */
 
 	@Override
 	public void paintComponent(Graphics g) {

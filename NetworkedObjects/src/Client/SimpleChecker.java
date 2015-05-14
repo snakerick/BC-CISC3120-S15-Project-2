@@ -13,6 +13,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyListener;
 
+/**
+ * This is the "Controller" of the MVC this allows the player to move the object the way they want
+ * the movement is a bit sluggish cause of the "repaint"
+ * 
+ * @author RICKY
+ *
+ */
+
 public class SimpleChecker extends JFrame implements KeyListener {
 	private int a = -1;
 	private int b = -1;

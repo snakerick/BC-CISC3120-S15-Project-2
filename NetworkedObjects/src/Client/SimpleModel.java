@@ -10,6 +10,15 @@ import java.util.Random;
 
 import GameObjects.*;
 
+/**
+ * This is the "Model" for the SimpleGame, it creates the Spaceship and creates the Object
+ * it also checks when the spaceship collides with "SpaceObjects"
+ * 
+ * @author RICKY
+ *
+ */
+
+
 public class SimpleModel extends Observable {
 	Thread gameThread;
 	SpaceObject ship;

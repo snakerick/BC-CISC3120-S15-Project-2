@@ -1,5 +1,7 @@
 package wsMessages;
 
+
+
 public class BeginGame extends Message {
 
 	String id; 

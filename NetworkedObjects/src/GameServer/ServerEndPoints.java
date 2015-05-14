@@ -8,7 +8,8 @@ import javax.websocket.server.ServerEndpoint;
 import wsMessages.*;
 
 /**
- * What does this server do when it receives a message from a client?
+ * This is the ServerEndPoint of the class also makes sure that when two players connect 
+ * that is when you can start the game. Both players has to be "ready"
  * 
  * @author sdexter72
  *

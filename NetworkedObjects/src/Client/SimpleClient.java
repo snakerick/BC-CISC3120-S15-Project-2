@@ -23,6 +23,7 @@ import GameServer.*;
 
 /**
  * This is the client for the SimpleGame to play through web sockets.
+ * Creates a GUI where the player clicks start, when both player is ready then it begins
  * 
  * @author sdexter72
  *
