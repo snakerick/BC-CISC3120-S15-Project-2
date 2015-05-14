@@ -36,7 +36,7 @@ public class ServerEndPoints {
         for (Session other : peer.getOpenSessions()) {
             try {
                 other.getBasicRemote().sendObject(msg);
-                if(Players >= 2 && startNum >= 2) {
+                if(Players >= 2 && startNum == Players ) {
             		BeginGame start = new BeginGame();
             		other.getBasicRemote().sendObject(start);
             	}

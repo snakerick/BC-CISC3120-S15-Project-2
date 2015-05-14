@@ -104,8 +104,5 @@ public class SimpleClient {
 		frame.setSize(400, 200);
 		frame.add(messageArea, BorderLayout.WEST);
 		frame.setVisible(true);
-		if ( false ) {
-			SimpleChecker game = new SimpleChecker();
-		}
 	}
 }

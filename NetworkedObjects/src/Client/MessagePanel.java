@@ -61,7 +61,7 @@ public class MessagePanel extends JPanel implements ActionListener {
 	}
 	
 	public void recieveBegin(BeginGame message) {
-		messageArea.append("The Game will begin \n");
+		messageArea.append("The Game will begin\n");
 			SimpleChecker game = new SimpleChecker();
 	}
 
