@@ -17,13 +17,14 @@ import wsMessages.*;
  
 @ServerEndpoint(value = "/game", decoders={ MessageDecoder.class }, encoders={StartMessageEncoder.class} )
 public class ServerEndPoints {
+	//Keeps track of the players and the number of people ready
 	private static int Players = 0;
 	private static int startNum = 0;
     private Logger logger = Logger.getLogger(this.getClass().getName());
  
     @OnOpen
     public void onOpen(Session peer) {
-    	//This keeps count of the number of players in the game;
+    	//Increment when a player connects
     	Players++;
         logger.info("Connected ... " + peer.getId());
     }
@@ -44,7 +45,7 @@ public class ServerEndPoints {
  
     @OnClose
     public void onClose(Session session, CloseReason closeReason) {
-    	//When a player disconnects
+    	//Decrements when a player disconnects
     	Players--;
         logger.info(String.format("Session %s closed because of %s", session.getId(), closeReason));
     }
