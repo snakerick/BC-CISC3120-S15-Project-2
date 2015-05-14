@@ -14,7 +14,8 @@ import javax.websocket.*;
 
 import org.glassfish.tyrus.client.ClientManager;
 
-import wsMessages.*;
+//import pokeClient.MessagePanel;
+
 
 /**
  * This class combines (a bit awkwardly) GUI setup code and WebSockets
@@ -26,9 +27,11 @@ import wsMessages.*;
  *
  */
 
-@ClientEndpoint(decoders = { MessageDecoder.class }, encoders = {
-		PokeMessageEncoder.class, ProdMessageEncoder.class, PrickleMessageEncoder.class })
+@ClientEndpoint( )
 public class SimpleClient {
+	JButton start;
+	JLabel idLabel;
+	JFrame frame;
 	private static CountDownLatch latch;
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 
@@ -68,8 +71,24 @@ public class SimpleClient {
 	}
 
 	private static void createAndShowGUI(Session session) {
+		/*JFrame frame = new JFrame("Poke");
+		JLabel idLabel = new JLabel("Your id:");
+		JTextField idField = new JTextField(String.valueOf(Math.round(Math
+				.random() * 100000)), 10);
+		idField.setEditable(true);
+		JButton start = new JButton("start");
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.add(idLabel);
+		buttonPanel.add(idField);
+		buttonPanel.add(start);
+		frame.add(buttonPanel, BorderLayout.NORTH);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(600, 400);
+		frame.setVisible(true);*/
+		
 		SimpleGame game = new SimpleGame("Simple Game", 400, 900);
 		game.requestFocus();
 		game.startGame();
+		 
 	}
 }

@@ -20,10 +20,7 @@ import javax.websocket.Session;
 
 import org.glassfish.tyrus.client.ClientManager;
 
-import wsMessages.MessageDecoder;
-import wsMessages.PokeMessageEncoder;
-import wsMessages.PrickleMessageEncoder;
-import wsMessages.ProdMessageEncoder;
+
 import Client.SimpleGame;
 
 /**
@@ -36,8 +33,7 @@ import Client.SimpleGame;
  * @author sdexter72
  *
  */
-@ClientEndpoint(decoders = { MessageDecoder.class }, encoders = {
-		PokeMessageEncoder.class, ProdMessageEncoder.class, PrickleMessageEncoder.class })
+@ClientEndpoint( )
 public class SimpleGame extends Game {
 	private static CountDownLatch latch;
 	private Logger logger = Logger.getLogger(this.getClass().getName());
@@ -138,12 +134,12 @@ public class SimpleGame extends Game {
 	}
 
 	
-	private static void createAndShowGUI(Session session) {
+	/*private static void createAndShowGUI(Session session) {
 		System.out.println("YAOOO");
 		//SimpleGame game = new SimpleGame("Simple Game", 400, 900);
 		//game.requestFocus();
 		//game.startGame();
-	}
+	}*/
 	
 	/**
 	 * In main, we create a new SimpleGame, make sure it has the keyboard focus
@@ -153,7 +149,7 @@ public class SimpleGame extends Game {
 	 * @param args
 	 */
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		latch = new CountDownLatch(1);
 
 		Session peer;
@@ -167,6 +163,6 @@ public class SimpleGame extends Game {
 				| InterruptedException | IOException e) {
 			throw new RuntimeException(e);
 		}
-	}
+	}*/
 
 }

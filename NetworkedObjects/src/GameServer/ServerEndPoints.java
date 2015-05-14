@@ -4,7 +4,6 @@ import java.util.logging.*;
 
 import javax.websocket.*;
 
-import wsMessages.*;
 
 import javax.websocket.server.ServerEndpoint;
 
@@ -15,8 +14,7 @@ import javax.websocket.server.ServerEndpoint;
  *
  */
  
-@ServerEndpoint(value = "/game",decoders = { MessageDecoder.class }, encoders = {
-		PokeMessageEncoder.class, ProdMessageEncoder.class, PrickleMessageEncoder.class })
+@ServerEndpoint(value = "/game")
 public class ServerEndPoints {
  
     private Logger logger = Logger.getLogger(this.getClass().getName());
@@ -26,7 +24,7 @@ public class ServerEndPoints {
         logger.info("Connected ... " + peer.getId());
     }
  
-    @OnMessage
+   /* @OnMessage
     public void onMessage(Session peer, Message msg) throws EncodeException {
         logger.log(Level.FINE, "Message {0} from {1}", new Object[]{msg, peer.getId()});
 
@@ -38,7 +36,7 @@ public class ServerEndPoints {
             }
 
         }
-    }
+    }*/
  
     @OnClose
     public void onClose(Session session, CloseReason closeReason) {
