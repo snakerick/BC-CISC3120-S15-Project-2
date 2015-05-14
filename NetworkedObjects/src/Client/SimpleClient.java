@@ -14,6 +14,9 @@ import javax.websocket.*;
 
 import org.glassfish.tyrus.client.ClientManager;
 
+import Client.MessagePanel;
+import wsMessages.*;
+
 //import pokeClient.MessagePanel;
 
 
@@ -27,13 +30,14 @@ import org.glassfish.tyrus.client.ClientManager;
  *
  */
 
-@ClientEndpoint( )
+@ClientEndpoint( decoders={ MessageDecoder.class }, encoders={StartMessageEncoder.class}  )
 public class SimpleClient {
 	JButton start;
 	JLabel idLabel;
 	JFrame frame;
 	private static CountDownLatch latch;
 	private Logger logger = Logger.getLogger(this.getClass().getName());
+	private static MessagePanel messageArea;
 
 	@OnOpen
 	public void onOpen(Session session) {
@@ -43,6 +47,15 @@ public class SimpleClient {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	@OnMessage
+	public void onMessage(Session session, Message message) {
+		logger.info("Received ...." + message.toString());
+
+		if (message instanceof StartMessage) {
+			messageArea.receivePoke((StartMessage) message);
+		} 
 	}
 
 
@@ -71,24 +84,26 @@ public class SimpleClient {
 	}
 
 	private static void createAndShowGUI(Session session) {
-		/*JFrame frame = new JFrame("Poke");
-		JLabel idLabel = new JLabel("Your id:");
+		JFrame frame = new JFrame("Game Lobby");
+		JLabel idLabel = new JLabel("Your name:");
 		JTextField idField = new JTextField(String.valueOf(Math.round(Math
-				.random() * 100000)), 10);
+				.random() * 100000)),10);
+		String temp = idField.getText();
 		idField.setEditable(true);
 		JButton start = new JButton("start");
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(idLabel);
 		buttonPanel.add(idField);
 		buttonPanel.add(start);
+		messageArea = new MessagePanel(session, idField, start);
 		frame.add(buttonPanel, BorderLayout.NORTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(600, 400);
-		frame.setVisible(true);*/
-		
-		SimpleGame game = new SimpleGame("Simple Game", 400, 900);
+		frame.setSize(400, 200);
+		frame.add(messageArea, BorderLayout.WEST);
+		frame.setVisible(true);
+		/*SimpleGame game = new SimpleGame("Simple Game", 400, 900);
 		game.requestFocus();
-		game.startGame();
+		game.startGame();*/
 		 
 	}
 }
