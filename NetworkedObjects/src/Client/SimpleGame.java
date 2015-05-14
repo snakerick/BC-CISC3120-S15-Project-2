@@ -93,7 +93,6 @@ public class SimpleGame extends Game implements Observer {
 		g.setColor(Color.WHITE);
 		g.drawString("SCORE: ",25,25);
 		g.drawString(Integer.toString(model.SCORE),80,25);
-		//model.ship.paint(g);
 		model.controlShip.paint(g);
 		for(int i = 0 ; i < model.MAX_OBJECTS ; i++ ) {
 			model.gameObjects[i].paint(g);

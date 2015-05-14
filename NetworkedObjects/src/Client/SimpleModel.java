@@ -19,7 +19,7 @@ public class SimpleModel extends Observable {
 	protected static int MAX_OBJECTS = 4;
 	protected static int LEVELS = 2;
 	protected static int SCORE = 0;
-	protected static int MAX_X = 3;
+	protected static int MAX_X = 1;
 	protected Random randNum = new Random();
 	protected Polygon shape;
 	protected int x = 0;

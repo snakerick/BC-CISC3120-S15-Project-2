@@ -80,14 +80,8 @@ public class SimpleChecker extends JFrame implements KeyListener {
 	
 
 	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void keyTyped(KeyEvent e) {} //not needed
 	
-	/*SimpleGame game = new SimpleGame("Simple Game", 400, 900);
-	game.requestFocus();
-	game.startGame();*/
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(

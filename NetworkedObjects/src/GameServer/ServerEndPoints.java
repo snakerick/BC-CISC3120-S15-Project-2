@@ -36,6 +36,7 @@ public class ServerEndPoints {
         for (Session other : peer.getOpenSessions()) {
             try {
                 other.getBasicRemote().sendObject(msg);
+                //Check to make sure that there is 2 or more player and all "ready"
                 if(Players >= 2 && startNum == Players ) {
             		BeginGame start = new BeginGame();
             		other.getBasicRemote().sendObject(start);
@@ -47,13 +48,6 @@ public class ServerEndPoints {
         }
     }
    
-  /* public boolean numberofPlayers(){
-	   if( Players >= 2 ) {
-		   return true;
-	   } else {
-		   return false;
-	   }
-   }*/
  
     @OnClose
     public void onClose(Session session, CloseReason closeReason) {

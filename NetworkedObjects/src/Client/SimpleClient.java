@@ -18,14 +18,11 @@ import Client.MessagePanel;
 import wsMessages.*;
 import GameServer.*;
 
-//import pokeClient.MessagePanel;
+
 
 
 /**
- * This class combines (a bit awkwardly) GUI setup code and WebSockets
- * client-endpoint code. Note that most of the user interaction is handled by
- * the MessagePanel class. Note how the onMessage() method decides what to do
- * depending on the type of message received.
+ * This is the client for the SimpleGame to play through web sockets.
  * 
  * @author sdexter72
  *
