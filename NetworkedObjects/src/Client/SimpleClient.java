@@ -84,7 +84,7 @@ public class SimpleClient {
 	}
 
 	private static void createAndShowGUI(Session session) {
-		JFrame frame = new JFrame("Game Lobby");
+		/*JFrame frame = new JFrame("Game Lobby");
 		JLabel idLabel = new JLabel("Your name:");
 		JTextField idField = new JTextField(String.valueOf(Math.round(Math
 				.random() * 100000)),10);
@@ -100,10 +100,7 @@ public class SimpleClient {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400, 200);
 		frame.add(messageArea, BorderLayout.WEST);
-		frame.setVisible(true);
-		/*SimpleGame game = new SimpleGame("Simple Game", 400, 900);
-		game.requestFocus();
-		game.startGame();*/
-		 
+		frame.setVisible(true);*/
+		SimpleChecker game = new SimpleChecker();
 	}
 }
