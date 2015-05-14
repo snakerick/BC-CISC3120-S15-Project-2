@@ -14,8 +14,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyListener;
 
 public class SimpleChecker extends JFrame implements KeyListener {
-	private int a = 0;
-	private int b = 0;
+	private int a = -1;
+	private int b = -1;
 	private SimpleModel model;
 	private SimpleGame paintGame;
 	Thread gameThread;
@@ -35,53 +35,49 @@ public class SimpleChecker extends JFrame implements KeyListener {
 		addKeyListener(this);
 		setVisible(true);
 	}
-	public void keyReleased(KeyEvent e) {
-    	if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-    		a -= 2;
-    		model.keypressed(a,b);
-    		System.out.println("Right Released");
-    		
-    	}
-    	if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-    		a += 2;
-    		model.keypressed(a,b);
-    		System.out.println("Left Released");
-    	}
-      	if(e.getKeyCode() == KeyEvent.VK_UP) {
-    		System.out.println("Up was Released");
-    		b -= 2;
-    		model.keypressed(a,b);
-    	}
-    	if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-    		System.out.println("Down was Released");
-    		model.keypressed(a,b);
-    		b += 2;
-    	}
-    }
-	
     public void keyPressed(KeyEvent e) {
 
     	if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-    		System.out.println("Right was Pressed");
+    		a += 1;
     		model.keypressed(a,b);
-    		a += 2;
+    		
     	}
     	if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-    		System.out.println("Left was Pressed");
+    		a -= 1;
     		model.keypressed(a,b);
-    		a -= 2;
     	}
       	if(e.getKeyCode() == KeyEvent.VK_UP) {
-    		System.out.println("Up was Pressed");
+    		b -= 1;
     		model.keypressed(a,b);
-    		b -= 2;
+    		
     	}
     	if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-    		System.out.println("Down was Pressed");
+    		b += 1;
     		model.keypressed(a,b);
-    		b += 2;
+    		
     	}
     }
+	public void keyReleased(KeyEvent e) {
+    	if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+    		a += 1;
+    		model.keypressed(a,b);
+    		
+    	}
+    	if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+    		a -= 1;
+    		model.keypressed(a,b);
+    	}
+      	if(e.getKeyCode() == KeyEvent.VK_UP) {
+    		b -= 1;
+    		model.keypressed(a,b);
+    	}
+    	if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+    		b += 1;
+    		model.keypressed(a,b);
+    		
+    	}
+    }
+	
 
 	@Override
 	public void keyTyped(KeyEvent e) {

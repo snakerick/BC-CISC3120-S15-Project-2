@@ -19,9 +19,11 @@ public class SimpleModel extends Observable {
 	protected static int MAX_OBJECTS = 4;
 	protected static int LEVELS = 2;
 	protected static int SCORE = 0;
-	protected static int MAX_X = 5;
+	protected static int MAX_X = 3;
 	protected Random randNum = new Random();
 	protected Polygon shape;
+	protected int x = 0;
+	protected int y = 0;
 	
 	public SimpleModel(){
 		Point[] shipShape = { new Point(210, 100), new Point(190, 90),
@@ -29,8 +31,8 @@ public class SimpleModel extends Observable {
 		ship = new SimpleSpaceObject(shipShape, new Point(200, 500), -90);
 		controlShip = new ControlledObject(ship);
 		//notifyObservers();	
-		gameThread = new Thread();
-		gameThread.start();
+		//gameThread = new Thread();
+		//gameThread.start();
 		setChanged();
 	}
 	
@@ -58,7 +60,7 @@ public class SimpleModel extends Observable {
 			gameObjects[i].rotate(LEVELS);
 			
 			//If ship collides the area will get set to 0; 
-			ship.collide(gameObjects[i]);
+			//ship.collide(gameObjects[i]);
 			if(ship.getPoly().findArea() == 0) {		//If the area is 0 then the game is over
 				return true;
 			} 
@@ -72,15 +74,9 @@ public class SimpleModel extends Observable {
 	}
 	
 	public void keypressed(int a, int b) {
-		try {
-			Thread.sleep(10);
-			ship.move(a,b);
-			notifyObservers();
-			setChanged();
-		}catch (InterruptedException e) {
-			System.err.println("Game interrupted.");
-		}
-		
+		ship.move(a,b);
+		notifyObservers();
+		setChanged();
 	}
 		
 }
