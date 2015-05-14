@@ -18,7 +18,9 @@ This is a "SimpleGame" rework, using Model View Controlled. It also can connect 
 
 ## Works Cited
 http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
+
 WebSocketLab was used
+
 JavaDocs for subclasses and class information
 
 ## Code Summary
