@@ -15,7 +15,7 @@ import javax.websocket.server.ServerEndpoint;
  *
  */
  
-@ServerEndpoint(value = "/poke",decoders = { MessageDecoder.class }, encoders = {
+@ServerEndpoint(value = "/game",decoders = { MessageDecoder.class }, encoders = {
 		PokeMessageEncoder.class, ProdMessageEncoder.class, PrickleMessageEncoder.class })
 public class ServerEndPoints {
  

@@ -4,7 +4,27 @@ import GameObjects.*;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Random;
+import java.util.concurrent.CountDownLatch;
+import java.util.logging.Logger;
+
+import javax.websocket.ClientEndpoint;
+import javax.websocket.CloseReason;
+import javax.websocket.DeploymentException;
+import javax.websocket.OnClose;
+import javax.websocket.OnOpen;
+import javax.websocket.Session;
+
+import org.glassfish.tyrus.client.ClientManager;
+
+import wsMessages.MessageDecoder;
+import wsMessages.PokeMessageEncoder;
+import wsMessages.PrickleMessageEncoder;
+import wsMessages.ProdMessageEncoder;
+import Client.SimpleGame;
 
 /**
  * A very simple example of how to use the Game base class.
@@ -16,8 +36,12 @@ import java.util.Random;
  * @author sdexter72
  *
  */
+@ClientEndpoint(decoders = { MessageDecoder.class }, encoders = {
+		PokeMessageEncoder.class, ProdMessageEncoder.class, PrickleMessageEncoder.class })
 public class SimpleGame extends Game {
-
+	private static CountDownLatch latch;
+	private Logger logger = Logger.getLogger(this.getClass().getName());
+	//private static MessagePanel messageArea;
 	/**
 	 * The lone 'object' in our simple game.
 	 */
@@ -25,7 +49,24 @@ public class SimpleGame extends Game {
 	ControlledObject controlShip;
 	SpaceObject object;
 	SpaceObject [] gameObjects;
+	
+	@OnOpen
+	public void onOpen(Session session) {
+		logger.info("Connected ... " + session.getId());
+		try {
+			session.getBasicRemote().sendText("start");
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
+	@OnClose
+	public void onClose(Session session, CloseReason closeReason) {
+		logger.info(String.format("Session %s close because of %s",
+				session.getId(), closeReason));
+		latch.countDown();
+	}
+	
 	//Variables needed for game to keep track of game
 	protected static int MAX_OBJECTS = 4;
 	protected static int LEVELS = 5;
@@ -96,6 +137,14 @@ public class SimpleGame extends Game {
 		}
 	}
 
+	
+	private static void createAndShowGUI(Session session) {
+		System.out.println("YAOOO");
+		//SimpleGame game = new SimpleGame("Simple Game", 400, 900);
+		//game.requestFocus();
+		//game.startGame();
+	}
+	
 	/**
 	 * In main, we create a new SimpleGame, make sure it has the keyboard focus
 	 * (which it will need when we implement code to control game action with
@@ -105,9 +154,19 @@ public class SimpleGame extends Game {
 	 */
 
 	public static void main(String[] args) {
-		SimpleGame game = new SimpleGame("Simple Game", 400, 900);
-		game.requestFocus();
-		game.startGame();
+		latch = new CountDownLatch(1);
+
+		Session peer;
+		ClientManager client = ClientManager.createClient();
+		try {
+			peer = client.connectToServer(Game.class, new URI("ws://localhost:8025/websockets/game"));
+			createAndShowGUI(peer);
+			latch.await();
+
+		} catch (DeploymentException | URISyntaxException
+				| InterruptedException | IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }
