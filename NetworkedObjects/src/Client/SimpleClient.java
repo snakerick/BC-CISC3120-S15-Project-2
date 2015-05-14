@@ -16,21 +16,20 @@ import org.glassfish.tyrus.client.ClientManager;
 
 import Client.MessagePanel;
 import wsMessages.*;
+import GameServer.*;
 
-//import pokeClient.MessagePanel;
+
 
 
 /**
- * This class combines (a bit awkwardly) GUI setup code and WebSockets
- * client-endpoint code. Note that most of the user interaction is handled by
- * the MessagePanel class. Note how the onMessage() method decides what to do
- * depending on the type of message received.
+ * This is the client for the SimpleGame to play through web sockets.
+ * Creates a GUI where the player clicks start, when both player is ready then it begins
  * 
  * @author sdexter72
  *
  */
 
-@ClientEndpoint( decoders={ MessageDecoder.class }, encoders={StartMessageEncoder.class}  )
+@ClientEndpoint( decoders={ MessageDecoder.class }, encoders={StartMessageEncoder.class, BeginGameEncoder.class}  )
 public class SimpleClient {
 	JButton start;
 	JLabel idLabel;
@@ -54,8 +53,11 @@ public class SimpleClient {
 		logger.info("Received ...." + message.toString());
 
 		if (message instanceof StartMessage) {
-			messageArea.receivePoke((StartMessage) message);
+			messageArea.receiveStart((StartMessage) message);
 		} 
+		if( message instanceof BeginGame) {
+			messageArea.recieveBegin((BeginGame) message);
+		}
 	}
 
 
@@ -85,10 +87,9 @@ public class SimpleClient {
 
 	private static void createAndShowGUI(Session session) {
 		JFrame frame = new JFrame("Game Lobby");
-		JLabel idLabel = new JLabel("Your name:");
+		JLabel idLabel = new JLabel("Your ID:");
 		JTextField idField = new JTextField(String.valueOf(Math.round(Math
 				.random() * 100000)),10);
-		String temp = idField.getText();
 		idField.setEditable(true);
 		JButton start = new JButton("start");
 		JPanel buttonPanel = new JPanel();
@@ -101,9 +102,5 @@ public class SimpleClient {
 		frame.setSize(400, 200);
 		frame.add(messageArea, BorderLayout.WEST);
 		frame.setVisible(true);
-		/*SimpleGame game = new SimpleGame("Simple Game", 400, 900);
-		game.requestFocus();
-		game.startGame();*/
-		 
 	}
 }

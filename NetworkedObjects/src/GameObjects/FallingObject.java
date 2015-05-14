@@ -32,7 +32,6 @@ public class FallingObject extends SpaceObjectDecorator {
 		int randY = randNum.nextInt(y);
 		int randX = randNum.nextInt(x);
 		super.move(randX, randY);
-		//System.out.println("Falling Object");
 	}
 
 	@Override

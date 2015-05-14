@@ -1,4 +1,5 @@
-package GameObjects;
+package Client;
+
 import javax.swing.*;
 
 import java.awt.event.*;
@@ -33,13 +34,13 @@ public class Game extends JPanel implements Runnable {
 	 *            Height of the game canvas
 	 */
 	
-	public Game(String name, int inWidth, int inHeight) {
-		JFrame frame = new JFrame(name);
-		frame.setSize(inWidth, inHeight);
-		frame.add(this);
-		frame.setVisible(true);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public Game() {
+		//JFrame frame = new JFrame(name);
+		//frame.setSize(inWidth, inHeight);
+		//frame.add(this);
+		//frame.setVisible(true);
+		//frame.setResizable(false);
+		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		running = true;		
 		gameThread = new Thread(this);
 	}

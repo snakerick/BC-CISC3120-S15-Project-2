@@ -17,7 +17,11 @@ public class MessageDecoder implements Decoder.Text<Message> {
 		if (jsonObject.getString("type").equals("start")) {
 			StartMessage message = new StartMessage(jsonObject.getString("ID"));
 			return message;
-		} else throw new DecodeException(msg,"Neither poke nor prod.");
+		}
+		if (jsonObject.getString("type").equals("begin")) {
+			BeginGame message = new BeginGame();
+				return message;
+		} else throw new DecodeException(msg,"Nothing.");
 
 	}
 

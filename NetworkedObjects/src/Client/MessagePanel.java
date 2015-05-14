@@ -9,10 +9,11 @@ import javax.websocket.EncodeException;
 import javax.websocket.Session;
 
 import wsMessages.StartMessage;
+import wsMessages.BeginGame;
 
 
 public class MessagePanel extends JPanel implements ActionListener {
-	
+	int counter = 0;
 	private JTextField id;
 	private JButton start;
 	Session session;
@@ -54,9 +55,14 @@ public class MessagePanel extends JPanel implements ActionListener {
 		
 	}
 	
-	public void receivePoke(StartMessage startMsg) {
+	public void receiveStart(StartMessage startMsg) {
 		messageArea.append(startMsg.getID() + " is ready.\n");
 		
+	}
+	
+	public void recieveBegin(BeginGame message) {
+		messageArea.append("The Game will begin\n");
+			SimpleChecker game = new SimpleChecker();
 	}
 
 }

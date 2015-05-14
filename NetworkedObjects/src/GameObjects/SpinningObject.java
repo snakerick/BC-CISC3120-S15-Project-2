@@ -14,7 +14,6 @@ public class SpinningObject extends SpaceObjectDecorator{
 		Random randNum = new Random();
 		double randRotate = (double) randNum.nextInt((int) d);
 		super.rotate(randRotate);
-		System.out.println("Spinning Object Rottating");
 	}
 
 	@Override
