@@ -7,6 +7,7 @@ This is a "SimpleGame" rework, using Model View Controlled. It also can connect 
 ####Steps
 ######Single Player:
 1. Just run SimpleChecker.java
+
 ######Multiplayer: 
 1. Run GameServer.java
 2. Run SimpleClient after as many as you like
