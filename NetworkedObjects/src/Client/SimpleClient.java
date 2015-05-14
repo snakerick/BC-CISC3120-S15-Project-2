@@ -16,6 +16,7 @@ import org.glassfish.tyrus.client.ClientManager;
 
 import Client.MessagePanel;
 import wsMessages.*;
+import GameServer.*;
 
 //import pokeClient.MessagePanel;
 
@@ -30,7 +31,7 @@ import wsMessages.*;
  *
  */
 
-@ClientEndpoint( decoders={ MessageDecoder.class }, encoders={StartMessageEncoder.class}  )
+@ClientEndpoint( decoders={ MessageDecoder.class }, encoders={StartMessageEncoder.class, BeginGameEncoder.class}  )
 public class SimpleClient {
 	JButton start;
 	JLabel idLabel;
@@ -54,8 +55,11 @@ public class SimpleClient {
 		logger.info("Received ...." + message.toString());
 
 		if (message instanceof StartMessage) {
-			messageArea.receivePoke((StartMessage) message);
+			messageArea.receiveStart((StartMessage) message);
 		} 
+		if( message instanceof BeginGame) {
+			messageArea.recieveBegin((BeginGame) message);
+		}
 	}
 
 
@@ -84,11 +88,10 @@ public class SimpleClient {
 	}
 
 	private static void createAndShowGUI(Session session) {
-		/*JFrame frame = new JFrame("Game Lobby");
-		JLabel idLabel = new JLabel("Your name:");
+		JFrame frame = new JFrame("Game Lobby");
+		JLabel idLabel = new JLabel("Your ID:");
 		JTextField idField = new JTextField(String.valueOf(Math.round(Math
 				.random() * 100000)),10);
-		String temp = idField.getText();
 		idField.setEditable(true);
 		JButton start = new JButton("start");
 		JPanel buttonPanel = new JPanel();
@@ -100,7 +103,9 @@ public class SimpleClient {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400, 200);
 		frame.add(messageArea, BorderLayout.WEST);
-		frame.setVisible(true);*/
-		SimpleChecker game = new SimpleChecker();
+		frame.setVisible(true);
+		if ( false ) {
+			SimpleChecker game = new SimpleChecker();
+		}
 	}
 }

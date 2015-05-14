@@ -30,9 +30,6 @@ public class SimpleModel extends Observable {
 				new Point(200, 100), new Point(190, 110) };
 		ship = new SimpleSpaceObject(shipShape, new Point(200, 500), -90);
 		controlShip = new ControlledObject(ship);
-		//notifyObservers();	
-		//gameThread = new Thread();
-		//gameThread.start();
 		setChanged();
 	}
 	
@@ -59,8 +56,8 @@ public class SimpleModel extends Observable {
 			gameObjects[i].move(LEVELS, LEVELS);
 			gameObjects[i].rotate(LEVELS);
 			
-			//If ship collides the area will get set to 0; 
-			//ship.collide(gameObjects[i]);
+			//If the ship collides with any space object, its GameOver and your score will stop counting.
+			ship.collide(gameObjects[i]);
 			if(ship.getPoly().findArea() == 0) {		//If the area is 0 then the game is over
 				return true;
 			} 
