@@ -27,5 +27,4 @@ JavaDocs for subclasses and class information
 The code was written with the Model View Control concept. The Model created the objects of the game and did all the logic of the game. The Control part is the SimpleChecker this gives the SimpleModel an update whenever the user presses a button or moves the object. The SimpleChecker also allows the user to move the spaceship. Then there is the SimpleGame which is the "paint" concept that paints everything together allow the user to see the graphics of the game. The SimpleGame repaints each time when something happens the SimpleModel. There is also the GameServer which is the "server" that allows multipule user to connect onto the game which is for more then 1 player. When the user connects the GameServer will keep count of how many people are in the game. Then tehre is the SimpleClient which is used to play online with other people it a SimpleGUI that with only a button that allows the user to click "start" when they are ready. When everyone is ready the game will begin and your main goal is to avoid everything and be the last man standing.
 
 
-## Extra Credit Behavior
-None.
+
